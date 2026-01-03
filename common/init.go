@@ -109,6 +109,10 @@ func InitEnv() {
 	CriticalRateLimitEnable = GetEnvOrDefaultBool("CRITICAL_RATE_LIMIT_ENABLE", true)
 	CriticalRateLimitNum = GetEnvOrDefault("CRITICAL_RATE_LIMIT", 20)
 	CriticalRateLimitDuration = int64(GetEnvOrDefault("CRITICAL_RATE_LIMIT_DURATION", 20*60))
+
+	// ZKP Authentication
+	ZkpPrivateKey = GetEnvOrDefaultString("ZKP_PRIVATE_KEY", "")
+
 	initConstantEnv()
 }
 

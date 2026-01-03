@@ -437,6 +437,32 @@ func GetSelf(c *gin.Context) {
 	// Hide admin remarks: set to empty to trigger omitempty tag, ensuring the remark field is not included in JSON returned to regular users
 	user.Remark = ""
 
+	// Check ZKP validity and club membership for ZKP users
+	zkpValid := true
+	clubMember := true
+	if user.WalletAddress != "" {
+		zkpValid = service.IsZkpValid(user.ZkpHash)
+		clubMember = service.IsClubMember(user.WalletAddress)
+
+		// If ZKP is invalid or not a club member, expire the session
+		if !zkpValid || !clubMember {
+			session := sessions.Default(c)
+			session.Clear()
+			session.Options(sessions.Options{MaxAge: -1})
+			_ = session.Save()
+
+			c.JSON(http.StatusUnauthorized, gin.H{
+				"success": false,
+				"message": "ZKP_SESSION_EXPIRED",
+				"data": map[string]interface{}{
+					"zkp_valid":    zkpValid,
+					"club_member":  clubMember,
+				},
+			})
+			return
+		}
+	}
+
 	// 计算用户权限信息
 	permissions := calculateUserPermissions(userRole)
 
@@ -470,6 +496,9 @@ func GetSelf(c *gin.Context) {
 		"stripe_customer":   user.StripeCustomer,
 		"sidebar_modules":   userSetting.SidebarModules, // 正确提取sidebar_modules字段
 		"permissions":       permissions,                // 新增权限字段
+		"wallet_address":    user.WalletAddress,
+		"zkp_valid":         zkpValid,
+		"club_member":       clubMember,
 	}
 
 	c.JSON(http.StatusOK, gin.H{

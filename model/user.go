@@ -47,6 +47,8 @@ type User struct {
 	Setting          string         `json:"setting" gorm:"type:text;column:setting"`
 	Remark           string         `json:"remark,omitempty" gorm:"type:varchar(255)" validate:"max=255"`
 	StripeCustomer   string         `json:"stripe_customer" gorm:"type:varchar(64);column:stripe_customer;index"`
+	WalletAddress    string         `json:"wallet_address" gorm:"column:wallet_address;type:varchar(42);index"`
+	ZkpHash          string         `json:"zkp_hash" gorm:"column:zkp_hash;type:varchar(78)"`
 }
 
 func (user *User) ToBaseUser() *UserBase {
@@ -928,4 +930,18 @@ func RootUserExists() bool {
 		return false
 	}
 	return true
+}
+
+func IsWalletAddressAlreadyTaken(walletAddress string) bool {
+	var user User
+	err := DB.Unscoped().Where("wallet_address = ?", walletAddress).First(&user).Error
+	return !errors.Is(err, gorm.ErrRecordNotFound)
+}
+
+func (user *User) FillUserByWalletAddress() error {
+	if user.WalletAddress == "" {
+		return errors.New("wallet address is empty")
+	}
+	err := DB.Where("wallet_address = ?", user.WalletAddress).First(user).Error
+	return err
 }
