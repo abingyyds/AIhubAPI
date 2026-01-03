@@ -2,7 +2,6 @@ package controller
 
 import (
 	"net/http"
-	"strconv"
 
 	"github.com/QuantumNous/new-api/common"
 	"github.com/QuantumNous/new-api/model"
@@ -14,6 +13,14 @@ import (
 
 type ZkpLoginRequest struct {
 	ZkpCode string `json:"zkpCode" binding:"required"`
+}
+
+// abbreviateAddress returns abbreviated wallet address like "0x1234...abcd"
+func abbreviateAddress(address string) string {
+	if len(address) <= 10 {
+		return address
+	}
+	return address[:6] + "..." + address[len(address)-4:]
 }
 
 func ZkpOAuth(c *gin.Context) {
@@ -109,8 +116,8 @@ func ZkpOAuth(c *gin.Context) {
 			return
 		}
 
-		user.Username = "zkp_" + strconv.Itoa(model.GetMaxUserId()+1)
-		user.DisplayName = "ZKP User"
+		user.Username = abbreviateAddress(walletAddress)
+		user.DisplayName = abbreviateAddress(walletAddress)
 		user.Role = common.RoleCommonUser
 		user.Status = common.UserStatusEnabled
 		user.ZkpHash = zkpHash
