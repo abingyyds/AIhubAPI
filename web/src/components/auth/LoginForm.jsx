@@ -214,6 +214,20 @@ const LoginForm = () => {
                       <span className='ml-2'>{t('使用 ZKP 登录')}</span>
                     </Button>
                   </div>
+
+                  <div className='mt-4 text-center'>
+                    <Text size='small' type='tertiary'>
+                      {t('还没有 ZKP Code？')}{' '}
+                      <a
+                        href='https://ai.web3.club'
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        className='text-blue-600 hover:text-blue-800 font-medium'
+                      >
+                        {t('前往 ai.web3.club 购买会员生成')}
+                      </a>
+                    </Text>
+                  </div>
                 </Form>
               </div>
             </Card>
