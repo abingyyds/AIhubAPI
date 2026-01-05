@@ -66,9 +66,31 @@ const RegisterForm = () => {
                   <Text type='secondary' className='block mb-2'>
                     {t('本系统仅支持 ZKP 登录')}
                   </Text>
-                  <Text type='tertiary' size='small' className='block'>
+                  <Text type='tertiary' size='small' className='block mb-3'>
                     {t('请使用您的 ZKP 凭证进行登录，首次登录将自动创建账户')}
                   </Text>
+                  <div className='mt-4 p-3 bg-blue-50 dark:bg-blue-900/30 rounded-lg'>
+                    <Text type='tertiary' size='small' className='block mb-2'>
+                      {t('还没有 ZKP 凭证？')}
+                    </Text>
+                    <Text type='tertiary' size='small' className='block'>
+                      {t('前往')}{' '}
+                      <a
+                        href='https://ai.web3.club'
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        className='text-blue-600 hover:text-blue-800 font-medium underline'
+                      >
+                        ai.web3.club
+                      </a>{' '}
+                      {t('购买会员生成密钥即可登录')}
+                    </Text>
+                  </div>
+                  <div className='mt-3 p-3 bg-green-50 dark:bg-green-900/30 rounded-lg'>
+                    <Text type='success' size='small' className='block'>
+                      ✨ {t('注册送100美元额度，每天签到领取1美元')}
+                    </Text>
+                  </div>
                 </div>
 
                 <Link to='/login'>
