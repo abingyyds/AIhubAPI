@@ -2593,6 +2593,20 @@
     "签到奖励的最小额度": "Quota minimum pour les récompenses d'enregistrement",
     "签到最大额度": "Quota maximum d'enregistrement",
     "签到奖励的最大额度": "Quota maximum pour les récompenses d'enregistrement",
-    "保存签到设置": "Enregistrer les paramètres d'enregistrement"
+    "保存签到设置": "Enregistrer les paramètres d'enregistrement",
+    "请输入 ZKP Code": "Veuillez saisir le code ZKP",
+    "请求格式错误": "Format de demande invalide",
+    "ZKP Code 格式无效": "Format de code ZKP invalide",
+    "ZKP 验证失败，请检查您的凭证": "La vérification ZKP a échoué, veuillez vérifier vos informations d'identification",
+    "您不是 AI Club 成员，无法登录": "Vous n'êtes pas membre du AI Club et ne pouvez pas vous connecter",
+    "登录失败": "Échec de la connexion",
+    "登录失败，请重试": "Échec de la connexion, veuillez réessayer",
+    "ZKP 登录": "Connexion ZKP",
+    "使用您的 ZKP 凭证登录 AI Club": "Connectez-vous au AI Club avec vos identifiants ZKP",
+    "ZKP Code": "Code ZKP",
+    "请输入您的 ZKP Code（9个数字，用逗号分隔）": "Veuillez saisir votre code ZKP (9 chiffres, séparés par des virgules)",
+    "使用 ZKP 登录": "Se connecter avec ZKP",
+    "还没有 ZKP Code？": "Vous n'avez pas encore de code ZKP ?",
+    "前往 ai.web3.club 购买会员生成": "Allez sur ai.web3.club pour acheter une adhésion et générer"
   }
 }

@@ -3158,6 +3158,20 @@
     "签到奖励的最小额度": "Hạn mức tối thiểu cho phần thưởng đăng nhập",
     "签到最大额度": "Hạn mức đăng nhập tối đa",
     "签到奖励的最大额度": "Hạn mức tối đa cho phần thưởng đăng nhập",
-    "保存签到设置": "Lưu cài đặt đăng nhập"
+    "保存签到设置": "Lưu cài đặt đăng nhập",
+    "请输入 ZKP Code": "Vui lòng nhập mã ZKP",
+    "请求格式错误": "Định dạng yêu cầu không hợp lệ",
+    "ZKP Code 格式无效": "Định dạng mã ZKP không hợp lệ",
+    "ZKP 验证失败，请检查您的凭证": "Xác minh ZKP thất bại, vui lòng kiểm tra thông tin đăng nhập của bạn",
+    "您不是 AI Club 成员，无法登录": "Bạn không phải là thành viên AI Club và không thể đăng nhập",
+    "登录失败": "Đăng nhập thất bại",
+    "登录失败，请重试": "Đăng nhập thất bại, vui lòng thử lại",
+    "ZKP 登录": "Đăng nhập ZKP",
+    "使用您的 ZKP 凭证登录 AI Club": "Đăng nhập vào AI Club bằng thông tin đăng nhập ZKP của bạn",
+    "ZKP Code": "Mã ZKP",
+    "请输入您的 ZKP Code（9个数字，用逗号分隔）": "Vui lòng nhập mã ZKP của bạn (9 chữ số, phân cách bằng dấu phẩy)",
+    "使用 ZKP 登录": "Đăng nhập bằng ZKP",
+    "还没有 ZKP Code？": "Chưa có mã ZKP?",
+    "前往 ai.web3.club 购买会员生成": "Truy cập ai.web3.club để mua tư cách thành viên và tạo"
   }
 }
