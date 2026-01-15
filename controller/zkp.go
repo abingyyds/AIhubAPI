@@ -13,6 +13,7 @@ import (
 
 type ZkpLoginRequest struct {
 	ZkpCode string `json:"zkpCode" binding:"required"`
+	AffCode string `json:"affCode"`
 }
 
 // abbreviateAddress returns abbreviated wallet address like "0x1234...abcd"
@@ -122,12 +123,10 @@ func ZkpOAuth(c *gin.Context) {
 		user.Status = common.UserStatusEnabled
 		user.ZkpHash = zkpHash
 
-		// Check for affiliation code
-		session := sessions.Default(c)
-		affCode := session.Get("aff")
+		// Check for affiliation code from request
 		inviterId := 0
-		if affCode != nil {
-			inviterId, _ = model.GetUserIdByAffCode(affCode.(string))
+		if req.AffCode != "" {
+			inviterId, _ = model.GetUserIdByAffCode(req.AffCode)
 		}
 
 		if err := user.Insert(inviterId); err != nil {

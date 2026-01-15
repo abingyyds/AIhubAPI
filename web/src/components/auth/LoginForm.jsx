@@ -83,8 +83,12 @@ const LoginForm = () => {
 
     setLoginLoading(true);
     try {
+      // Get invitation code from localStorage
+      const affCode = localStorage.getItem('aff');
+
       const res = await API.post('/api/oauth/zkp', {
         zkpCode: zkpCode.trim(),
+        affCode: affCode || undefined,
       });
       const { success, message, data } = res.data;
       if (success) {
