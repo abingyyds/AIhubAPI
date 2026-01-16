@@ -122,6 +122,7 @@ func ZkpOAuth(c *gin.Context) {
 		user.Role = common.RoleCommonUser
 		user.Status = common.UserStatusEnabled
 		user.ZkpHash = zkpHash
+		user.Group = "vip"
 
 		// Check for affiliation code from request
 		inviterId := 0

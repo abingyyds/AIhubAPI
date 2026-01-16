@@ -17,7 +17,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 For commercial licensing, please contact support@quantumnous.com
 */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getLogo, getSystemName } from '../../helpers';
 import { Button, Card } from '@douyinfe/semi-ui';
@@ -30,6 +30,14 @@ const RegisterForm = () => {
   const { t } = useTranslation();
   const logo = getLogo();
   const systemName = getSystemName();
+
+  // Save invitation code to localStorage
+  useEffect(() => {
+    const affCode = new URLSearchParams(window.location.search).get('aff');
+    if (affCode) {
+      localStorage.setItem('aff', affCode);
+    }
+  }, []);
 
   return (
     <div className='relative overflow-hidden bg-gray-100 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8'>
