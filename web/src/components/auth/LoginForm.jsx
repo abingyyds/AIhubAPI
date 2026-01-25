@@ -68,15 +68,30 @@ const LoginForm = () => {
     if (searchParams.get('expired')) {
       showError(t('未登录或登录已过期，请重新登录'));
     }
+    
+    const zkpParam = searchParams.get('zkp');
+    if (zkpParam) {
+      try {
+        const decodedZkp = atob(zkpParam);
+        setZkpCode(decodedZkp);
+        setAgreedToTerms(true);
+        handleZkpLogin(decodedZkp);
+      } catch (error) {
+        console.error('Auto login error:', error);
+      }
+    }
   }, [searchParams, t]);
 
-  async function handleZkpLogin() {
-    if ((hasUserAgreement || hasPrivacyPolicy) && !agreedToTerms) {
+  async function handleZkpLogin(zkpCodeOverride) {
+    const isAutoLogin = typeof zkpCodeOverride === 'string';
+    const finalZkpCode = isAutoLogin ? zkpCodeOverride : zkpCode;
+
+    if (!isAutoLogin && (hasUserAgreement || hasPrivacyPolicy) && !agreedToTerms) {
       showError(t('请先阅读并同意用户协议和隐私政策'));
       return;
     }
 
-    if (!zkpCode.trim()) {
+    if (!finalZkpCode.trim()) {
       showError(t('请输入 ZKP Code'));
       return;
     }
@@ -87,7 +102,7 @@ const LoginForm = () => {
       const affCode = localStorage.getItem('aff');
 
       const res = await API.post('/api/oauth/zkp', {
-        zkpCode: zkpCode.trim(),
+        zkpCode: finalZkpCode.trim(),
         affCode: affCode || undefined,
       });
       const { success, message, data } = res.data;
